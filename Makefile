@@ -3,7 +3,7 @@ all: build
 FLAGS =
 COMMONENVVAR = GOOS=linux GOARCH=amd64
 BUILDENVVAR = CGO_ENABLED=0
-TESTENVVAR = 
+TESTENVVAR =
 REGISTRY = gcr.io/google_containers
 TAG = $(shell git describe --abbrev=0)
 PKGS = $(shell go list ./... | grep -v /vendor/)
@@ -12,7 +12,7 @@ deps:
 	go get github.com/tools/godep
 
 build: clean deps
-	$(COMMONENVVAR) $(BUILDENVVAR) godep go build -o kube-state-metrics 
+	$(COMMONENVVAR) $(BUILDENVVAR) godep go build -o kube-state-metrics
 
 test-unit: clean deps build
 	$(COMMONENVVAR) $(TESTENVVAR) godep go test --race $(FLAGS) $(PKGS)
